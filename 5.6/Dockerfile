@@ -174,7 +174,7 @@ RUN chmod -R 600 /var/www/.ssh/
 RUN echo "Europe/Paris" > /etc/timezone && dpkg-reconfigure -f noninteractive tzdata
 
 # Expose 80 for apache, 9000 for xdebug
-EXPOSE 80 9000
+EXPOSE 8080 9000
 
 # Set a custom entrypoint.
 COPY core/docker-entrypoint.sh /
