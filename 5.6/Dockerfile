@@ -70,9 +70,7 @@ RUN docker-php-ext-configure gd --with-jpeg-dir=/usr/include/ \
 COPY core/memcached.conf /etc/memcached.conf
 
   # install xdebug and codesniffer
-  RUN apt-get install --fix-missing php5-xdebug -y; \
-  
-    # SASS and Compass installation
+  RUN # SASS and Compass installation
     gem install sass -v 3.4.22 ;\
     gem install compass;
 
