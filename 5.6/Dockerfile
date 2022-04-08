@@ -71,15 +71,7 @@ COPY core/memcached.conf /etc/memcached.conf
 
   # install xdebug and codesniffer
   RUN apt-get install --fix-missing php5-xdebug -y; \
-  pecl install xdebug; \
-  echo ';zend_extension = /usr/local/lib/php/extensions/no-debug-non-zts-20131226/xdebug.so' >> /usr/local/etc/php/php.ini; \
-  touch /usr/local/etc/php/conf.d/xdebug.ini &&\
-    echo xdebug.remote_enable=1 >> /usr/local/etc/php/conf.d/xdebug.ini &&\
-    echo xdebug.remote_autostart=0 >> /usr/local/etc/php/conf.d/xdebug.ini &&\
-    echo xdebug.remote_connect_back=1 >> /usr/local/etc/php/conf.d/xdebug.ini &&\
-    echo xdebug.remote_port=9000 >> /usr/local/etc/php/conf.d/xdebug.ini &&\
-    echo xdebug.remote_log=/tmp/php5-xdebug.log >> /usr/local/etc/php/conf.d/xdebug.ini; \
-
+  
     # SASS and Compass installation
     gem install sass -v 3.4.22 ;\
     gem install compass;
@@ -174,7 +166,7 @@ RUN chmod -R 600 /var/www/.ssh/
 RUN echo "Europe/Paris" > /etc/timezone && dpkg-reconfigure -f noninteractive tzdata
 
 # Expose 80 for apache, 9000 for xdebug
-EXPOSE 8080 9000
+EXPOSE 80
 
 # Set a custom entrypoint.
 COPY core/docker-entrypoint.sh /
