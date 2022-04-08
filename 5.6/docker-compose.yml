@@ -6,15 +6,14 @@ services:
     image: actency/docker-apache-php:5.4
     ports:
       - "80:80"
-      - "9000:9000"
     environment:
       - SERVERNAME=agpb.local
       - SERVERALIAS=example2.local *.example2.local
       - DRUSH_VERSION=8
       - DOCUMENTROOT=agpb
     volumes:
-      - /home/docker/projets/:/var/www/html/
-      - /home/docker/.ssh/:/var/www/.ssh/
+      - /var/www/agpb/:/var/www/html/
+      - /home/ubuntu/.ssh/:/var/www/.ssh/
       - ./config/php.ini:/usr/local/etc/php/php.ini
     links:
       - database:mysql
@@ -51,7 +50,7 @@ services:
       - MYSQL_USER=eneovision
       - MYSQL_PASSWORD=eneo85
     volumes: 
-      - "/home/driks/Projects/agpb/data/mysql:/var/lib/mysql"
+      - "/var/www/mysql:/var/lib/mysql"
   # phpmyadmin container - actency images
   phpmyadmin:
     image: actency/docker-phpmyadmin
