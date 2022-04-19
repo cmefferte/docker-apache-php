@@ -17,6 +17,9 @@ fi
 echo The apache user and group has been set to the following:
 id $USERNAME
 
+chown -R --silent www-data:www-data /etc/apache2/ssl
+
+
 usermod -d /var/www www-data
 
 # Apache2 custom servername, alias and documentroot

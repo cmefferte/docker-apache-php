@@ -138,7 +138,7 @@ RUN ( \
   echo "opcache.enable_cli=1"; \
   ) > /usr/local/etc/php/conf.d/opcache-recommended.ini
 
-RUN a2enmod rewrite expires && service apache2 restart
+RUN a2enmod rewrite expires ssl && service apache2 restart
 
 # install phing
 RUN pear channel-discover pear.phing.info && pear install [--alldeps] phing/phing

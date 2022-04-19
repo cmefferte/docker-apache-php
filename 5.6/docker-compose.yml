@@ -6,15 +6,17 @@ services:
     image: actency/docker-apache-php:5.4
     ports:
       - "80:80"
+      - "443:443"
     environment:
       - SERVERNAME=agpb.local
       - SERVERALIAS=example2.local *.example2.local
       - DRUSH_VERSION=8
       - DOCUMENTROOT=agpb
     volumes:
-      - /var/www/agpb/:/var/www/html/
-      - /home/ubuntu/.ssh/:/var/www/.ssh/
+      - /home/docker/projets/agpb/:/var/www/html/agpb
+      - /home/driks/.ssh/:/var/www/.ssh/
       - ./config/php.ini:/usr/local/etc/php/php.ini
+      - "/home/driks/Bureau/ssl:/etc/apache2/ssl"
     links:
       - database:mysql
       - mailhog
