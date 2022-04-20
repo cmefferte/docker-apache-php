@@ -8,34 +8,35 @@ services:
       - "80:80"
       - "443:443"
     environment:
-      - SERVERNAME=agpb.local
-      - SERVERALIAS=example2.local *.example2.local
+      - SERVERNAME=agpb.fr
       - DRUSH_VERSION=8
       - DOCUMENTROOT=agpb
     volumes:
-      - /home/docker/projets/agpb/:/var/www/html/agpb
-      - /home/driks/.ssh/:/var/www/.ssh/
+      - /var/www/agpb:/var/www/html/agpb
+      - /home/ubuntu/.ssh/:/var/www/.ssh/
       - ./config/php.ini:/usr/local/etc/php/php.ini
-      - "/home/driks/Bureau/ssl:/etc/apache2/ssl"
+      - /etc/apache2/ssl:/etc/apache2/ssl
+      - ./config/agpb.conf:/etc/apache2/sites-available/agpb.conf
+
     links:
       - database:mysql
       - mailhog
-    tty: true
+    tty: false
     # Set logs driver to fluentd only if you enable the logs container
     # Add this logging section to any other container if you want the logs to be sent in es-fluentd-kibana container
-    logging:
-      driver: fluentd
-      options:
-        fluentd-address: "127.0.0.1:24224"
+#    logging:
+#      driver: fluentd
+#      options:
+#        fluentd-address: "127.0.0.1:24224"
 
   # logs container - actency images
-  logs:
-    image: actency/docker-es-fluentd-kibana
-    ports:
-      - "8000:5601" # browse this port to see the logs in kibana
-      - "9200:9200"
-      - "9300:9300"
-      - "24224:24224"
+#  logs:
+#    image: actency/docker-es-fluentd-kibana
+#    ports:
+#      - "8000:5601" # browse this port to see the logs in kibana
+#      - "9200:9200"
+#      - "9300:9300"
+#      - "24224:24224"
 
   # database container - actency images
   database:
@@ -49,7 +50,7 @@ services:
       - MYSQL_USER=eneovision
       - MYSQL_PASSWORD=eneo85
     volumes: 
-      - "/var/www/mysql:/var/lib/mysql"
+      - "/home/driks/Projects/agpb/data/mysql:/var/lib/mysql"
   # phpmyadmin container - actency images
   phpmyadmin:
     image: actency/docker-phpmyadmin
