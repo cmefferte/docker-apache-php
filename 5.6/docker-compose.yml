@@ -13,8 +13,8 @@ services:
       - DRUSH_VERSION=8
       - DOCUMENTROOT=agpb
     volumes:
-      - /home/docker/projets/:/var/www/html/
-      - /home/docker/.ssh/:/var/www/.ssh/
+      - /var/www/agpb:/var/www/html/agpb
+      - /home/ubuntu/.ssh/:/var/www/.ssh/
       - ./config/php.ini:/usr/local/etc/php/php.ini
     links:
       - database:mysql
@@ -22,7 +22,7 @@ services:
       - solr
       - redis
       - tika
-    tty: true
+    tty: false
     # Set logs driver to fluentd only if you enable the logs container
     # Add this logging section to any other container if you want the logs to be sent in es-fluentd-kibana container
     logging:
