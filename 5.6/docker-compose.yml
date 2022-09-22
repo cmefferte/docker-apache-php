@@ -12,7 +12,7 @@ services:
       - DRUSH_VERSION=8
       - DOCUMENTROOT=agpb
     volumes:
-      - /var/www/agpb/:/var/www/html/
+      - /home/docker/projets/:/var/www/html/
       - /home/ubuntu/.ssh/:/var/www/.ssh/
       - ./config/php.ini:/usr/local/etc/php/php.ini
     links:
@@ -67,11 +67,11 @@ services:
       - "8025:8025"
 
   # solr container - actency images
-#  solr:
-#    # actency/docker-solr available tags: latest, 6.2, 6.1, 6.0, 5.5, 5.4, 5.3, 5.2, 5.1, 5.0, 4.10, 3.6
-#    image: actency/docker-solr:6.2
-#    ports:
-#      - "8080:8983"
+  solr:
+    # actency/docker-solr available tags: latest, 6.2, 6.1, 6.0, 5.5, 5.4, 5.3, 5.2, 5.1, 5.0, 4.10, 3.6
+    image: actency/docker-solr:6.2
+    ports:
+      - "8080:8983"
 
   # redis container - official images
 #  redis:
