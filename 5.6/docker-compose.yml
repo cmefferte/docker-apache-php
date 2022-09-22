@@ -93,7 +93,7 @@ services:
 #      - redis
 
   # Tika server container - actency images
-#  tika:
-#    image: actency/docker-tika-server
-#    ports:
-#      - "9998:9998"
+  tika:
+    image: actency/docker-tika-server
+    ports:
+      - "9998:9998"
