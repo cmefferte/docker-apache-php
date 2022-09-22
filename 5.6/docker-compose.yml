@@ -21,6 +21,7 @@ services:
     links:
       - database:mysql
       - mailhog
+      - tika
     tty: false
     # Set logs driver to fluentd only if you enable the logs container
     # Add this logging section to any other container if you want the logs to be sent in es-fluentd-kibana container
